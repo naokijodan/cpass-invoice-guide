@@ -191,99 +191,89 @@
                     <div class="step-num">1</div>
                     <div class="step-text">
                         <h4>セラーポータルを開く</h4>
-                        <p>CPaSSにログインして、以下の順でアクセスします。</p>
-                        <div class="path">設定 → 配送業者設定 → SpeedPAKセラーポータルへ</div>
-                        <div class="image-box">
-                            画像: <code>images/step1-portal.png</code>
-                        </div>
+                        <p>CPaSSにログインして、左メニューの「配送業者設定」をクリックします。</p>
+                        <img src="images/step1-portal.png" alt="CPaSS設定画面 - 配送業者設定" class="screenshot">
+
+                        <p style="margin-top: 15px;">セラーポータルへのリンクは2箇所あります。</p>
+                        <ul style="margin: 10px 0; padding-left: 20px; font-size: 0.95rem; color: #555;">
+                            <li><strong>①「SpeedPAKセラーポータルへ」</strong>：ログインを求められることがある</li>
+                            <li><strong>②「設定」</strong>：ログイン状態のままマイページに飛べる（おすすめ）</li>
+                        </ul>
+                        <img src="images/step1-portal-link.png" alt="セラーポータルへのリンク" class="screenshot">
                     </div>
                 </div>
 
                 <div class="step">
                     <div class="step-num">2</div>
                     <div class="step-text">
-                        <h4>請求書の「詳細」をクリック</h4>
-                        <p>トップページに請求書一覧が表示されます。確認したい期間の「詳細」を開きます。</p>
-                        <div class="image-box">
-                            画像: <code>images/step2-invoice-list.png</code>
-                        </div>
+                        <h4>サイドメニューの「請求書/関税・税」をクリック</h4>
+                        <p>セラーポータルの左メニューから「請求書/関税・税」を選択します。</p>
+                        <img src="images/step2-menu.png" alt="サイドメニュー - 請求書/関税・税" class="screenshot">
                     </div>
                 </div>
 
                 <div class="step">
                     <div class="step-num">3</div>
                     <div class="step-text">
-                        <h4>「請求書をダウンロード」をクリック</h4>
-                        <p>画面下部のボタンからExcelファイルをダウンロードできます。</p>
-                        <div class="image-box">
-                            画像: <code>images/step3-download.png</code>
-                        </div>
+                        <h4>「請求書の発行」タブ → 「エクスポート」をクリック</h4>
+                        <p>①「請求書の発行」タブを選択し、③「エクスポート」ボタンでダウンロードできます。</p>
+                        <p style="font-size: 0.9rem; color: #666;">※②「関税・税」タブについては次のセクションで説明します。</p>
+                        <img src="images/step3-invoice.png" alt="請求書の発行 - エクスポート" class="screenshot">
                     </div>
                 </div>
 
                 <h4 style="margin-top: 25px; color: #1a237e;">ダウンロードされるExcelの内容</h4>
-                <table>
-                    <tr>
-                        <th>注文番号</th>
-                        <th>取引時間</th>
-                        <th>費用タイプ</th>
-                        <th>小計（円）</th>
-                    </tr>
-                    <tr>
-                        <td>xxxxxxxx</td>
-                        <td>2026-01-08 12:35</td>
-                        <td>運送料金</td>
-                        <td>2,191</td>
-                    </tr>
-                    <tr>
-                        <td>xxxxxxxx</td>
-                        <td>2026-01-08 12:35</td>
-                        <td>燃料割増金</td>
-                        <td>516</td>
-                    </tr>
-                    <tr>
-                        <td>xxxxxxxx</td>
-                        <td>2026-01-08 12:35</td>
-                        <td>雪配達期追加金</td>
-                        <td>104</td>
-                    </tr>
-                </table>
+                <img src="images/excel-invoice.png" alt="請求書Excelの内容" class="screenshot">
+                <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">主なカラム：請求書期日 / 請求額 / 通貨 / 注文番号 / 費用タイプ / 税金 / 金額 / 取引時間 / 備考</p>
             </div>
         </section>
 
         <!-- 関税データ -->
         <section class="section">
-            <div class="section-header">関税データ（DDP）について</div>
+            <div class="section-header">関税・税データのダウンロード</div>
             <div class="section-content">
-                <p>米国向け発送では、関税（DDP）が配送料金と一緒に請求されます。この関税データも同じExcelファイルに含まれています。</p>
+                <p>米国向け発送で発生した関税（DDP）のデータをダウンロードする方法です。</p>
 
                 <div class="warning">
                     <strong>2025年10月17日〜:</strong> 米国向け2,500ドル以下の発送はDDP（関税前払い）が必須化されました。
                 </div>
 
-                <h4 style="margin-top: 20px; color: #1a237e;">関税関連の費用タイプ</h4>
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div class="step-text">
+                        <h4>「関税・税」タブ → 「エクスポート」をクリック</h4>
+                        <p>①「関税・税」タブを選択し、②「エクスポート」ボタンでダウンロードできます。</p>
+                        <img src="images/step4-tax.png" alt="関税・税タブ - エクスポート" class="screenshot">
+                    </div>
+                </div>
+
+                <h4 style="margin-top: 25px; color: #1a237e;">ダウンロードされるExcelの内容</h4>
+                <img src="images/excel-tax.png" alt="関税・税Excelの内容" class="screenshot">
+                <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">主なカラム：請求期間 / 合計金額 / 通貨 / 注文番号 / 輸送業者 / 料金タイプ / 料金 / 小計 / 取引時間</p>
+
+                <h4 style="margin-top: 20px; color: #1a237e;">主な料金タイプ</h4>
                 <table>
                     <tr>
-                        <th>費用タイプ</th>
+                        <th>料金タイプ</th>
                         <th>説明</th>
                     </tr>
                     <tr>
-                        <td>関税立替金</td>
-                        <td>セラーが立替払いした関税額</td>
+                        <td>推定米国税</td>
+                        <td>発送時に徴収される関税の推定額</td>
                     </tr>
                     <tr>
-                        <td>推定＋国際税処理手数料</td>
-                        <td>関税の推定額と処理手数料</td>
+                        <td>米国関税</td>
+                        <td>税関で確定した実際の関税額</td>
+                    </tr>
+                    <tr>
+                        <td>多品目申告</td>
+                        <td>複数商品をまとめて申告した場合の手数料</td>
                     </tr>
                 </table>
 
                 <div class="note">
                     <strong>精算の流れ:</strong><br>
                     発送時に推定額を徴収 → 税関で実際の関税額が確定 → 差額があれば次回請求で精算（過剰分は返金、不足分は追徴）
-                </div>
-
-                <div class="image-box">
-                    画像: <code>images/tax-data.png</code>（関税データの明細例）
                 </div>
             </div>
         </section>
