@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cpass（オレンジコネックス）請求書ダウンロード方法 解説ガイド</title>
+    <title>CPaSS完全ガイド｜請求書・関税(DDP)・輸出証明書のダウンロード方法</title>
     <style>
         * {
             margin: 0;
@@ -15,66 +15,116 @@
             font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
             line-height: 1.8;
             color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
+            background: #f5f7fa;
         }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
+        .header {
+            background: linear-gradient(135deg, #1a237e 0%, #3949ab 100%);
+            color: white;
             padding: 40px 20px;
-        }
-
-        header {
             text-align: center;
-            margin-bottom: 40px;
         }
 
-        h1 {
-            font-size: 2rem;
-            color: #2c3e50;
+        .header h1 {
+            font-size: 1.8rem;
             margin-bottom: 10px;
-            background: linear-gradient(90deg, #3498db, #2ecc71);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
-        .subtitle {
-            color: #7f8c8d;
+        .header p {
+            opacity: 0.9;
             font-size: 1rem;
         }
 
-        .card {
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        /* ナビゲーション */
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .nav-tab {
+            padding: 12px 20px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .nav-tab:hover {
+            background: #3949ab;
+            color: white;
+        }
+
+        .nav-tab.active {
+            background: #1a237e;
+            color: white;
+        }
+
+        /* セクション */
+        .section {
             background: white;
             border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             margin-bottom: 30px;
+            overflow: hidden;
         }
 
-        .intro {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
+        .section-header {
+            padding: 25px 30px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-icon {
+            width: 50px;
+            height: 50px;
             border-radius: 12px;
-            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
         }
 
-        .intro h2 {
+        .section-icon.invoice { background: linear-gradient(135deg, #4CAF50, #81C784); }
+        .section-icon.tax { background: linear-gradient(135deg, #FF5722, #FF8A65); }
+        .section-icon.export { background: linear-gradient(135deg, #2196F3, #64B5F6); }
+        .section-icon.price { background: linear-gradient(135deg, #9C27B0, #BA68C8); }
+
+        .section-title {
             font-size: 1.3rem;
-            margin-bottom: 15px;
+            color: #1a237e;
         }
 
-        .intro p {
-            opacity: 0.95;
+        .section-content {
+            padding: 30px;
+        }
+
+        /* ステップ */
+        .steps {
+            counter-reset: step;
         }
 
         .step {
             display: flex;
             gap: 20px;
-            margin-bottom: 35px;
-            padding-bottom: 35px;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
             border-bottom: 1px dashed #e0e0e0;
         }
 
@@ -85,93 +135,269 @@
         }
 
         .step-number {
+            counter-increment: step;
             flex-shrink: 0;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #3498db, #2ecc71);
+            width: 40px;
+            height: 40px;
+            background: #1a237e;
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
             font-weight: bold;
+        }
+
+        .step-number::before {
+            content: counter(step);
         }
 
         .step-content {
             flex: 1;
         }
 
-        .step-content h3 {
-            color: #2c3e50;
-            font-size: 1.2rem;
-            margin-bottom: 12px;
+        .step-content h4 {
+            color: #1a237e;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
         }
 
         .step-content p {
             color: #555;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
+        /* パスボックス */
         .path-box {
-            background: #f8f9fa;
-            border-left: 4px solid #3498db;
+            background: #e8eaf6;
+            border-left: 4px solid #3949ab;
             padding: 15px 20px;
             border-radius: 0 8px 8px 0;
             margin: 15px 0;
             font-family: 'Monaco', 'Consolas', monospace;
-            font-size: 0.95rem;
-            color: #2c3e50;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 5px;
         }
 
         .path-box .arrow {
-            color: #3498db;
-            margin: 0 8px;
+            color: #3949ab;
+            font-weight: bold;
         }
 
-        .highlight-box {
-            background: linear-gradient(135deg, #fff9c4 0%, #fff59d 100%);
+        /* 画像プレースホルダー */
+        .image-placeholder {
+            background: linear-gradient(135deg, #fafafa, #f0f0f0);
+            border: 2px dashed #ccc;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            margin: 20px 0;
+            color: #888;
+        }
+
+        .image-placeholder .icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .image-placeholder p {
+            font-size: 0.9rem;
+        }
+
+        .image-placeholder code {
+            background: #e0e0e0;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        /* 実際の画像 */
+        .screenshot {
+            width: 100%;
+            max-width: 700px;
+            border: 1px solid #ddd;
             border-radius: 8px;
-            padding: 15px 20px;
+            margin: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* 情報ボックス */
+        .info-box {
+            border-radius: 10px;
+            padding: 18px 22px;
             margin: 15px 0;
             display: flex;
-            align-items: flex-start;
             gap: 12px;
+            align-items: flex-start;
         }
 
-        .highlight-box .icon {
+        .info-box.tip {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border-left: 4px solid #4CAF50;
+        }
+
+        .info-box.warning {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border-left: 4px solid #FF9800;
+        }
+
+        .info-box.important {
+            background: linear-gradient(135deg, #ffebee, #ffcdd2);
+            border-left: 4px solid #f44336;
+        }
+
+        .info-box.note {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-left: 4px solid #2196F3;
+        }
+
+        .info-box .icon {
             font-size: 1.3rem;
+            flex-shrink: 0;
         }
 
-        .tip-box {
-            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-            border-radius: 8px;
-            padding: 15px 20px;
-            margin: 15px 0;
+        .info-box h5 {
+            font-size: 0.95rem;
+            margin-bottom: 5px;
         }
 
-        .tip-box h4 {
-            color: #2e7d32;
+        .info-box p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* テーブル */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+
+        .data-table th,
+        .data-table td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        .data-table th {
+            background: #1a237e;
+            color: white;
+            font-weight: 500;
+        }
+
+        .data-table tr:nth-child(even) {
+            background: #f5f5f5;
+        }
+
+        .data-table tr:hover {
+            background: #e8eaf6;
+        }
+
+        /* DDP説明カード */
+        .ddp-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .ddp-card {
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .ddp-card.ddp {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border: 2px solid #4CAF50;
+        }
+
+        .ddp-card.ddu {
+            background: linear-gradient(135deg, #ffebee, #ffcdd2);
+            border: 2px solid #f44336;
+        }
+
+        .ddp-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .ddp-card.ddp h4 { color: #2e7d32; }
+        .ddp-card.ddu h4 { color: #c62828; }
+
+        .ddp-card p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .ddp-card ul {
+            text-align: left;
+            margin-top: 15px;
+            padding-left: 20px;
+        }
+
+        .ddp-card li {
             margin-bottom: 8px;
-            display: flex;
+            font-size: 0.9rem;
+        }
+
+        /* タイムライン */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #1a237e;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 14px;
+            height: 14px;
+            background: #1a237e;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px #1a237e;
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: #1a237e;
+            font-size: 0.95rem;
+        }
+
+        .timeline-content {
+            margin-top: 5px;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        /* ボタンデモ */
+        .button-demo {
+            display: inline-flex;
             align-items: center;
             gap: 8px;
-        }
-
-        .warning-box {
-            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
-            border-radius: 8px;
-            padding: 15px 20px;
-            margin: 15px 0;
-        }
-
-        .warning-box h4 {
-            color: #c62828;
-            margin-bottom: 8px;
-        }
-
-        .button-demo {
-            display: inline-block;
             background: linear-gradient(135deg, #4CAF50, #45a049);
             color: white;
             padding: 12px 24px;
@@ -181,261 +407,513 @@
             box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
         }
 
-        .excel-preview {
-            background: #f5f5f5;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            margin: 15px 0;
-        }
-
-        .excel-preview table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.85rem;
-        }
-
-        .excel-preview th,
-        .excel-preview td {
-            border: 1px solid #ccc;
-            padding: 8px 12px;
-            text-align: left;
-        }
-
-        .excel-preview th {
-            background: #4a7c59;
-            color: white;
-        }
-
-        .excel-preview tr:nth-child(even) {
-            background: #e8e8e8;
-        }
-
-        .summary {
-            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-            border-radius: 12px;
-            padding: 25px;
-            margin-top: 30px;
-        }
-
-        .summary h3 {
-            color: #1565c0;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .summary ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .summary li {
-            padding: 8px 0;
-            padding-left: 25px;
-            position: relative;
-        }
-
-        .summary li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #1565c0;
-            font-weight: bold;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            color: #7f8c8d;
-            font-size: 0.9rem;
-        }
-
-        .service-info {
+        /* サービス別ガイド */
+        .service-guide {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 15px;
             margin: 20px 0;
         }
 
-        .service-card {
+        .service-item {
             background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #3949ab;
+        }
+
+        .service-item h5 {
+            color: #1a237e;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .service-item p {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        /* Excel プレビュー */
+        .excel-preview {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
             border-radius: 8px;
             padding: 15px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .excel-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .excel-icon {
+            width: 32px;
+            height: 32px;
+            background: #217346;
+            color: white;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        /* フッター */
+        .footer {
             text-align: center;
-        }
-
-        .service-card h4 {
-            color: #2c3e50;
-            font-size: 0.95rem;
-            margin-bottom: 5px;
-        }
-
-        .service-card p {
-            color: #7f8c8d;
+            padding: 30px 20px;
+            color: #888;
             font-size: 0.85rem;
         }
 
-        @media (max-width: 600px) {
-            .container {
-                padding: 20px 15px;
+        .footer a {
+            color: #3949ab;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.4rem;
             }
 
-            .card {
-                padding: 25px;
+            .nav-tabs {
+                flex-direction: column;
             }
 
-            h1 {
-                font-size: 1.5rem;
+            .section-content {
+                padding: 20px;
             }
 
             .step {
                 flex-direction: column;
             }
 
-            .step-number {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
+            .ddp-comparison {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Cpass請求書ダウンロード方法</h1>
-            <p class="subtitle">オレンジコネックス（Orange Connex）の請求内容を取得する手順</p>
-        </header>
-
-        <div class="intro">
-            <h2>このガイドについて</h2>
-            <p>eBayセラー向けの配送サービス「Cpass」から、SpeedPAKの請求書（インボイス）をExcelファイルでダウンロードする方法を解説します。経費精算や確定申告の際に必要となる重要な作業です。</p>
-        </div>
-
-        <div class="card">
-            <div class="step">
-                <div class="step-number">1</div>
-                <div class="step-content">
-                    <h3>Cpassにログインして設定画面を開く</h3>
-                    <p>まず、Cpassの管理画面にログインし、以下の順序でSpeedPAKセラーポータルにアクセスします。</p>
-                    <div class="path-box">
-                        設定 <span class="arrow">→</span> 配送業者設定 <span class="arrow">→</span> SpeedPAKセラーポータルへ
-                    </div>
-                    <div class="service-info">
-                        <div class="service-card">
-                            <h4>Orange Connex (Japan)</h4>
-                            <p>eBay SpeedPAK - Ship via FedEx/International Connect Plus</p>
-                        </div>
-                        <div class="service-card">
-                            <h4>SpeedPAK Economy</h4>
-                            <p>eBay SpeedPAK Economy</p>
-                        </div>
-                    </div>
-                    <div class="tip-box">
-                        <h4>💡 ポイント</h4>
-                        <p>配送業者設定のページには、有効になっている配送サービスの一覧が表示されます。SpeedPAKを利用している場合は「Orange Connex (Japan)」の項目があります。</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="step">
-                <div class="step-number">2</div>
-                <div class="step-content">
-                    <h3>セラーポータルで請求書の「詳細」をクリック</h3>
-                    <p>SpeedPAKセラーポータルを開いたら、該当する請求書の「詳細」ボタンをクリックします。</p>
-                    <div class="highlight-box">
-                        <span class="icon">📋</span>
-                        <div>
-                            <strong>請求書一覧の確認項目：</strong><br>
-                            ・請求金額（例：-355,139円）<br>
-                            ・支払い方法（PayPal、VISA等）<br>
-                            ・支払い状態
-                        </div>
-                    </div>
-                    <p>請求書の詳細画面では、各注文ごとの運送料金、燃料割増金、雪配達期追加金などの内訳を確認できます。</p>
-                </div>
-            </div>
-
-            <div class="step">
-                <div class="step-number">3</div>
-                <div class="step-content">
-                    <h3>「請求書をダウンロード」をクリック</h3>
-                    <p>詳細画面の下部にある「請求書をダウンロード」ボタンをクリックすると、Excelファイルがダウンロードされます。</p>
-                    <div class="button-demo">📥 請求書をダウンロード</div>
-                    <div class="warning-box">
-                        <h4>⚠️ 注意事項</h4>
-                        <p>請求期間を確認してからダウンロードしてください。例：2026年1月8日〜2026年1月14日</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="step">
-                <div class="step-number">4</div>
-                <div class="step-content">
-                    <h3>ダウンロードしたExcelファイルの内容</h3>
-                    <p>ダウンロードしたファイルには、以下のような情報が含まれています。</p>
-                    <div class="excel-preview">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>注文番号</th>
-                                    <th>取引時間</th>
-                                    <th>費用タイプ</th>
-                                    <th>小計（円）</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>xxxxxxxx</td>
-                                    <td>2026-01-08 12:35:41</td>
-                                    <td>運送料金</td>
-                                    <td>2,191</td>
-                                </tr>
-                                <tr>
-                                    <td>xxxxxxxx</td>
-                                    <td>2026-01-08 12:35:41</td>
-                                    <td>燃料割増金</td>
-                                    <td>516</td>
-                                </tr>
-                                <tr>
-                                    <td>xxxxxxxx</td>
-                                    <td>2026-01-08 12:35:41</td>
-                                    <td>雪配達期追加金</td>
-                                    <td>104</td>
-                                </tr>
-                                <tr>
-                                    <td>xxxxxxxx</td>
-                                    <td>2026-01-08 12:35:40</td>
-                                    <td>運送料金</td>
-                                    <td>2,719</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="tip-box">
-                        <h4>📊 データの活用方法</h4>
-                        <p>このデータを使って、商品ごとの送料コストを分析したり、確定申告用の経費明細を作成できます。ページネーションで全件（例：394件）を確認できます。</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="summary">
-                <h3>📝 まとめ</h3>
-                <ul>
-                    <li>Cpassの「設定」→「配送業者設定」からSpeedPAKセラーポータルにアクセス</li>
-                    <li>請求書一覧から該当期間の「詳細」を開く</li>
-                    <li>「請求書をダウンロード」でExcelファイルを取得</li>
-                    <li>運送料金・燃料割増金・追加料金の内訳を確認可能</li>
-                    <li>確定申告や経費管理に活用</li>
-                </ul>
-            </div>
-        </div>
-
-        <footer>
-            <p>このガイドは Money Goose 会員サイトの内容を参考に作成しました</p>
-        </footer>
+    <div class="header">
+        <h1>CPaSS 完全ガイド</h1>
+        <p>請求書・関税(DDP)・輸出証明書のダウンロード方法</p>
     </div>
+
+    <div class="container">
+        <!-- ナビゲーション -->
+        <nav class="nav-tabs">
+            <a href="#invoice" class="nav-tab active">請求書ダウンロード</a>
+            <a href="#tax" class="nav-tab">関税・DDP</a>
+            <a href="#export" class="nav-tab">輸出証明書</a>
+            <a href="#price" class="nav-tab">料金表</a>
+        </nav>
+
+        <!-- セクション1: 請求書ダウンロード -->
+        <section id="invoice" class="section">
+            <div class="section-header">
+                <div class="section-icon invoice">📄</div>
+                <h2 class="section-title">請求書（インボイス）のダウンロード方法</h2>
+            </div>
+            <div class="section-content">
+                <p>SpeedPAKの配送料金明細をExcelファイルでダウンロードする方法です。経費精算や確定申告に必要な書類です。</p>
+
+                <div class="info-box note">
+                    <span class="icon">📅</span>
+                    <div>
+                        <h5>請求サイクル</h5>
+                        <p>請求書は月4回発行されます：1〜7日 / 8〜14日 / 15〜22日 / 23日〜月末</p>
+                    </div>
+                </div>
+
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number"></div>
+                        <div class="step-content">
+                            <h4>CPaSSからセラーポータルにアクセス</h4>
+                            <p>CPaSSにログインし、以下の順序でSpeedPAKセラーポータルを開きます。</p>
+                            <div class="path-box">
+                                <span>設定</span>
+                                <span class="arrow">→</span>
+                                <span>配送業者設定</span>
+                                <span class="arrow">→</span>
+                                <span>SpeedPAKセラーポータルへ</span>
+                            </div>
+
+                            <div class="image-placeholder">
+                                <div class="icon">🖼️</div>
+                                <p>画像を配置: <code>images/step1-settings.png</code></p>
+                                <p>CPaSSの設定画面のスクリーンショット</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number"></div>
+                        <div class="step-content">
+                            <h4>請求書の「詳細」をクリック</h4>
+                            <p>セラーポータルのトップページに請求書一覧が表示されます。確認したい期間の請求書の「詳細」ボタンをクリックします。</p>
+
+                            <div class="image-placeholder">
+                                <div class="icon">🖼️</div>
+                                <p>画像を配置: <code>images/step2-invoice-list.png</code></p>
+                                <p>請求書一覧画面のスクリーンショット</p>
+                            </div>
+
+                            <div class="info-box tip">
+                                <span class="icon">💡</span>
+                                <div>
+                                    <h5>確認できる情報</h5>
+                                    <p>請求金額、支払い方法（PayPal/VISA等）、支払い状態が一覧で確認できます。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number"></div>
+                        <div class="step-content">
+                            <h4>明細を確認して「請求書をダウンロード」</h4>
+                            <p>詳細画面では、各注文ごとの費用内訳が確認できます。画面下部の「請求書をダウンロード」ボタンでExcelファイルを取得します。</p>
+
+                            <div class="button-demo">
+                                <span>📥</span>
+                                <span>請求書をダウンロード</span>
+                            </div>
+
+                            <div class="image-placeholder">
+                                <div class="icon">🖼️</div>
+                                <p>画像を配置: <code>images/step3-download.png</code></p>
+                                <p>ダウンロードボタンのスクリーンショット</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number"></div>
+                        <div class="step-content">
+                            <h4>ダウンロードしたExcelの内容</h4>
+                            <p>Excelファイルには以下の情報が含まれています。</p>
+
+                            <div class="excel-preview">
+                                <div class="excel-header">
+                                    <div class="excel-icon">XLS</div>
+                                    <span>請求書明細.xlsx</span>
+                                </div>
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>注文番号</th>
+                                            <th>取引時間</th>
+                                            <th>費用タイプ</th>
+                                            <th>小計（円）</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>xxxxxxxx</td>
+                                            <td>2026-01-08 12:35:41</td>
+                                            <td>運送料金</td>
+                                            <td>2,191</td>
+                                        </tr>
+                                        <tr>
+                                            <td>xxxxxxxx</td>
+                                            <td>2026-01-08 12:35:41</td>
+                                            <td>燃料割増金</td>
+                                            <td>516</td>
+                                        </tr>
+                                        <tr>
+                                            <td>xxxxxxxx</td>
+                                            <td>2026-01-08 12:35:41</td>
+                                            <td>雪配達期追加金</td>
+                                            <td>104</td>
+                                        </tr>
+                                        <tr>
+                                            <td>xxxxxxxx</td>
+                                            <td>2026-01-08 12:35:40</td>
+                                            <td>関税立替金</td>
+                                            <td>1,765</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="info-box tip">
+                                <span class="icon">📊</span>
+                                <div>
+                                    <h5>主な費用タイプ</h5>
+                                    <p>運送料金 / 燃料割増金 / 雪配達期追加金 / 関税立替金 / 推定＋国際税処理手数料 など</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- セクション2: 関税・DDP -->
+        <section id="tax" class="section">
+            <div class="section-header">
+                <div class="section-icon tax">🛃</div>
+                <h2 class="section-title">関税・DDP（関税前払い）について</h2>
+            </div>
+            <div class="section-content">
+                <div class="info-box important">
+                    <span class="icon">⚠️</span>
+                    <div>
+                        <h5>重要：2025年10月17日からDDP完全義務化</h5>
+                        <p>米国向け2,500ドル以下の発送は、DDP（関税前払い）が必須となりました。</p>
+                    </div>
+                </div>
+
+                <h3 style="margin: 25px 0 15px; color: #1a237e;">デミニミス撤廃の経緯</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2025年7月30日</div>
+                        <div class="timeline-content">米国政府が「デミニミス・ルール」撤廃の大統領令を発出。800ドル以下の関税免除が廃止。</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2025年8月29日</div>
+                        <div class="timeline-content">SpeedPAK Economy・Expressが DDP方式に移行開始。</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2025年10月17日</div>
+                        <div class="timeline-content">DDP完全義務化。2,500ドル以下の米国向け発送はDDPのみ。</div>
+                    </div>
+                </div>
+
+                <h3 style="margin: 30px 0 15px; color: #1a237e;">DDP vs DDU の違い</h3>
+                <div class="ddp-comparison">
+                    <div class="ddp-card ddp">
+                        <h4>✅ DDP（Delivered Duty Paid）</h4>
+                        <p>関税前払い方式</p>
+                        <ul>
+                            <li>セラーが発送時に関税を負担</li>
+                            <li>バイヤーは追加費用なしで受取</li>
+                            <li>通関がスムーズ</li>
+                            <li>受取拒否リスクが低い</li>
+                        </ul>
+                    </div>
+                    <div class="ddp-card ddu">
+                        <h4>❌ DDU（Delivered Duty Unpaid）</h4>
+                        <p>関税後払い方式 ※選択不可</p>
+                        <ul>
+                            <li>バイヤーが受取時に関税を支払い</li>
+                            <li>支払い拒否→返送リスク</li>
+                            <li>税関で滞留する可能性</li>
+                            <li>バイヤー体験が悪化</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 style="margin: 30px 0 15px; color: #1a237e;">関税の計算と請求フロー</h3>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number"></div>
+                        <div class="step-content">
+                            <h4>発送時に関税の推定額を徴収</h4>
+                            <p>CPaSSで発送ラベルを作成する際、以下の情報をもとに関税が自動計算されます。</p>
+                            <table class="data-table">
+                                <tr>
+                                    <th>計算要素</th>
+                                    <th>説明</th>
+                                </tr>
+                                <tr>
+                                    <td>申告価格</td>
+                                    <td>商品価格のみ（送料は含まない）</td>
+                                </tr>
+                                <tr>
+                                    <td>HTSコード</td>
+                                    <td>商品の分類コード</td>
+                                </tr>
+                                <tr>
+                                    <td>原産国</td>
+                                    <td>商品の製造国</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number"></div>
+                        <div class="step-content">
+                            <h4>税関での査定</h4>
+                            <p>商品が米国税関を通過する際に、実際の関税額が確定します。</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number"></div>
+                        <div class="step-content">
+                            <h4>精算（過剰分返金 or 不足分追徴）</h4>
+                            <p>推定額と実際の関税額を照合し、差額が請求書に反映されます。</p>
+                            <div class="info-box note">
+                                <span class="icon">💰</span>
+                                <div>
+                                    <h5>請求書での表示</h5>
+                                    <p>「関税立替金」「推定＋国際税処理手数料」などの費用タイプで明細に表示されます。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box warning">
+                    <span class="icon">💡</span>
+                    <div>
+                        <h5>セラーの対応ポイント</h5>
+                        <p>関税分を商品価格または送料に含めて回収することが推奨されています。正確なHTSコード・原産国・申告価格を入力することで、推定額と実際額の差を最小化できます。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- セクション3: 輸出証明書 -->
+        <section id="export" class="section">
+            <div class="section-header">
+                <div class="section-icon export">📜</div>
+                <h2 class="section-title">輸出証明書の取得方法</h2>
+            </div>
+            <div class="section-content">
+                <p>消費税還付の申告時に必要な「輸出証明書」の取得方法です。利用する配送サービスによって取得方法が異なります。</p>
+
+                <div class="service-guide">
+                    <div class="service-item">
+                        <h5>SpeedPAK - Ship via DHL</h5>
+                        <p>セラーポータルから直接ダウンロード可能</p>
+                        <div class="path-box" style="margin-top: 10px; font-size: 0.8rem;">
+                            セラーポータル → 各注文番号の料金明細 → 注文作成時間を選択 → 証明書をダウンロードする
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <h5>SpeedPAK - Ship via FedEx</h5>
+                        <p>FedExに直接申請が必要</p>
+                        <p style="margin-top: 10px;"><strong>フリーダイヤル:</strong> 0120-003-200</p>
+                    </div>
+                    <div class="service-item">
+                        <h5>SpeedPAK Economy</h5>
+                        <p>Orange Connexに連絡して取得</p>
+                        <p style="margin-top: 10px;"><strong>必要情報:</strong> EEで始まる追跡番号</p>
+                    </div>
+                </div>
+
+                <div class="info-box tip">
+                    <span class="icon">📧</span>
+                    <div>
+                        <h5>Orange Connex カスタマーサポート</h5>
+                        <p>電話: 0800-100-3671（フリーダイヤル）<br>
+                        メール: cs.jp@orangeconnex.com<br>
+                        営業時間: 月〜土 9:00-18:00</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- セクション4: 料金表 -->
+        <section id="price" class="section">
+            <div class="section-header">
+                <div class="section-icon price">💹</div>
+                <h2 class="section-title">料金表のダウンロード</h2>
+            </div>
+            <div class="section-content">
+                <p>SpeedPAKの地域・重量別の料金表をダウンロードする方法です。</p>
+
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number"></div>
+                        <div class="step-content">
+                            <h4>セラーポータルにアクセス</h4>
+                            <p>CPaSSの設定 → 配送業者設定 → SpeedPAKセラーポータルへ</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number"></div>
+                        <div class="step-content">
+                            <h4>「料金と計算機」を開く</h4>
+                            <p>セラーポータルのメニューから「料金と計算機」をクリックします。</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number"></div>
+                        <div class="step-content">
+                            <h4>「料金表をダウンロードする」をクリック</h4>
+                            <p>画面右上のボタンから、地域や重量ごとの料金表をダウンロードできます。</p>
+                            <div class="button-demo" style="background: linear-gradient(135deg, #9C27B0, #7B1FA2);">
+                                <span>📥</span>
+                                <span>料金表をダウンロードする</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box note">
+                    <span class="icon">⛽</span>
+                    <div>
+                        <h5>燃料サーチャージについて</h5>
+                        <p>燃料割増金は毎週変動します。FedEx公式サイトで最新の燃料サーチャージ率を確認できます。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p>このガイドは <a href="https://www.ebay.co.jp/speedpak/" target="_blank">eBay SpeedPAK公式サイト</a> の情報をもとに作成しています</p>
+        <p style="margin-top: 10px;">お問い合わせ: Orange Connex カスタマーサポート 0800-100-3671</p>
+    </footer>
+
+    <script>
+        // スムーススクロール
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+
+                // アクティブ状態の更新
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // スクロール時のナビゲーション更新
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.section');
+            const navTabs = document.querySelectorAll('.nav-tab');
+
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navTabs.forEach(tab => {
+                tab.classList.remove('active');
+                if (tab.getAttribute('href') === '#' + current) {
+                    tab.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
