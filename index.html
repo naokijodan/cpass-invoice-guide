@@ -292,6 +292,54 @@
             </div>
         </section>
 
+        <!-- Excelデータの整理方法 -->
+        <section class="section">
+            <div class="section-header">Excelデータの整理方法：追跡番号ごとに合計を出す</div>
+            <div class="section-content">
+                <p>ダウンロードしたデータを追跡番号（注文番号）ごとにまとめて、合計金額を計算する方法です。</p>
+
+                <h4 style="margin-top: 20px; color: #1a237e;">方法1: ピボットテーブル（おすすめ）</h4>
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div class="step-text">
+                        <h4>データ範囲を選択</h4>
+                        <p>データ全体を選択します（Ctrl+Shift+End で最後まで選択）</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div class="step-text">
+                        <h4>ピボットテーブルを挿入</h4>
+                        <p>「挿入」タブ →「ピボットテーブル」→「OK」</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div class="step-text">
+                        <h4>フィールドを設定</h4>
+                        <p>右側のフィールドリストで：</p>
+                        <ul style="margin: 10px 0; padding-left: 20px;">
+                            <li><strong>行:</strong>「注文番号」をドラッグ</li>
+                            <li><strong>値:</strong>「金額」または「料金」をドラッグ</li>
+                        </ul>
+                        <p>これで追跡番号ごとの合計が自動計算されます。</p>
+                    </div>
+                </div>
+
+                <h4 style="margin-top: 30px; color: #1a237e;">方法2: SUMIF関数</h4>
+                <p>特定の追跡番号の合計だけを知りたい場合に便利です。</p>
+                <div class="path" style="font-size: 1rem;">
+                    =SUMIF(注文番号の列, 検索したい番号, 金額の列)<br><br>
+                    例: =SUMIF(D:D, "EM1013086266352", G:G)
+                </div>
+                <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">※列の位置はダウンロードしたファイルに合わせて調整してください</p>
+
+                <div class="note" style="margin-top: 20px;">
+                    <strong>Tips:</strong> ピボットテーブルは一度作れば、元データが増えても「更新」ボタンで再集計できるので便利です。
+                </div>
+            </div>
+        </section>
+
     </div>
 
     <footer class="footer">
